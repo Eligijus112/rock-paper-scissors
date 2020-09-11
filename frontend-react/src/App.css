@@ -1,0 +1,48 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.Signs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Sign {
+  padding: 1rem;
+  top: 0;
+}
+
+.Sign img {
+  height: 4rem;
+  width: 4rem;
+  padding: 0.5rem;
+}
+
+.Sign button:hover{
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.signName {
+  padding: 1rem;
+  font-weight: 600;
+}
+
+.subHeader {
+  font-weight: 600;
+}
+
+.Outcome span {
+  font-weight: 600;
+}

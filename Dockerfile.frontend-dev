@@ -1,0 +1,16 @@
+# Getting the node image 
+FROM node:alpine 
+
+# set working directory
+WORKDIR /app
+
+# install app dependencies
+COPY frontend-react/package.json .
+COPY frontend-react/package-lock.json .
+RUN npm install 
+
+# add app
+COPY ./frontend-react .
+
+# start app
+CMD ["npm", "start"]
