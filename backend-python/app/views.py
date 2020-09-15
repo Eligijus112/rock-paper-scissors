@@ -1,37 +1,28 @@
-# Importing flask for API creation
-from flask import Flask, request, jsonify
-from flask_cors import CORS
+# Importing the application
+from app import gameInstance
 
-# ENV variables
-from dotenv import load_dotenv
+# Importing the db connection
+from . import db
+
+# Importng flask related content serving
+from flask import request, jsonify
 
 # Importing the game engine
-from GameEngine import GameEngine 
+from .GameEngine import GameEngine 
 
-# File paths
-import os
-
-# Loading the dotenv file
-APP_ROOT = os.path.join(os.path.dirname(__file__))
-dotenv_path = os.path.join(APP_ROOT, '.env')
-load_dotenv(dotenv_path)
+# Importing the Result data model
+from .models import Results
 
 # Initiating the game engine in memory
 game = GameEngine()
 
-# Initiating the app object 
-app = Flask(__name__)
-
-# Enabling CORS
-CORS(app)
-
 # Initial endpoint
-@app.route('/')
+@gameInstance.route('/')
 def home():
     return "Welcome to the rock paper scissors game!!!"
 
 # Endpoint for the game 
-@app.route('/game')
+@gameInstance.route('/game')
 def rps_game():
     """
     The game for rock paper scissors
@@ -48,12 +39,15 @@ def rps_game():
     # Comparing the two
     final_outcome = game.compare_outcomes(computer_outcome, user_outcome)
 
+    # Creating a commit to db 
+    result = Results(sign_user=user_outcome, sign_AI=computer_outcome, result=final_outcome)
+
+    # Saving the info to database
+    db.session.add(result)
+    db.session.commit()
+
     # Returning a json with the outcome
     return jsonify({
         'outcome': final_outcome,
         'computer_sign': computer_outcome
     })
-
-# Running the application
-if __name__ == '__main__':
-    app.run(host=os.getenv("HOST"), port=os.getenv("PORT"))
