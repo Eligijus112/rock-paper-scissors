@@ -11,4 +11,4 @@ COPY ./backend-python .
 RUN pip install -r requirements.txt
 
 # Overriding the default command
-CMD ["python", "app.py"]
+CMD ["python", "run.py"]

@@ -13,7 +13,7 @@ load_dotenv(dotenv_path)
 class Config(object):
     DEBUG = True
     SECRET_KEY = os.environ.get('SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = f"""postgresql://{os.getenv("POSTGRES_USER")}:{os.getenv("POSTGRES_PASSWORD")}@{os.getenv("POSTGRES_HOST")}:5432/postgres"""
+    SQLALCHEMY_DATABASE_URI = f"""postgresql://{os.getenv("POSTGRES_USER")}:{os.getenv("POSTGRES_PASSWORD")}@database:5432/postgres"""
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 class ProdConfig(Config):
