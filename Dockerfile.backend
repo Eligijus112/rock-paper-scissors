@@ -11,4 +11,4 @@ COPY ./backend-python .
 RUN pip install -r requirements.txt
 
 # Running the command 
-CMD ["gunicorn", "-c", "python:config.gunicorn", "wsgi:app"]
+CMD ["gunicorn", "-c", "python:config.gunicorn", "wsgi:gameInstance"]

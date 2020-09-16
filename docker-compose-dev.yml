@@ -5,6 +5,8 @@ services:
         image: "postgres" 
         env_file:
           - database.env
+        ports:
+          - 5432:5432
         volumes:
           - ./database-data/:/var/lib/postgresql/data/
 
@@ -15,6 +17,7 @@ services:
             dockerfile: Dockerfile.backend-dev
         ports: 
             - 5000:5000
+            - 10001:10001
         volumes: 
             - ./backend-python:/app
         depends_on: 
