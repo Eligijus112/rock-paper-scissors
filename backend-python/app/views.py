@@ -51,3 +51,37 @@ def rps_game():
         'outcome': final_outcome,
         'computer_sign': computer_outcome
     })
+
+# Endpoint for the global game statistics
+@gameInstance.route('/stats')
+def stats():
+    """
+    The game for rock paper scissors
+    """
+    # Total games played 
+    n = Results.query.count()
+
+    # Couting human wins
+    humanWins = Results.query.filter_by(result=1).count()
+
+    # Counting AI wins 
+    AIWins = Results.query.filter_by(result=-1).count()
+
+    # Counting draws
+    draws = Results.query.filter_by(result=0).count()
+
+    # Most popular user signs
+    scissor_n = Results.query.filter_by(sign_user='scissors').count()
+    paper_n = Results.query.filter_by(sign_user='paper').count()
+    rock_n = Results.query.filter_by(sign_user='rock').count()
+
+    # Returning a json with the outcome
+    return jsonify({
+        'total_games': n,
+        'human_wins': humanWins,
+        'ai_wins': AIWins,
+        'draws': draws,
+        'scissor_n': scissor_n,
+        'paper_n': paper_n,
+        'rock_n': rock_n
+        })
