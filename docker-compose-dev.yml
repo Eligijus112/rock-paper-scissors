@@ -1,7 +1,7 @@
 version: '3'
 services:
     # Database container
-    db:
+    database:
         image: "postgres" 
         env_file:
           - database.env
@@ -21,7 +21,7 @@ services:
         volumes: 
             - ./backend-python:/app
         depends_on: 
-            - db
+            - database
         restart:
             always
             
