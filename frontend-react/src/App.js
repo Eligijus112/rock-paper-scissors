@@ -3,11 +3,15 @@ import React, { Component } from 'react';
 import './App.css';
 import Sign from './components/Sign';
 import Outcome from './components/Outcome';
+import GlobalStats from './components/GlobalStats';
 
 // Importing logos for signs 
 import rock from './rock.svg'
 import paper from './paper.svg'
 import scissors from './scissors.svg'
+
+// React tabs
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 // Global store tracking
 import { connect } from 'react-redux';
@@ -21,38 +25,53 @@ class App extends Component {
         <header className="App-header">
           <p>
             Welcome to the rock paper scissors game!
-          </p>
+              </p>
         </header>
+        <Tabs>
 
-        <div className="subHeader">
-          <p> Select a sign and go head to head against the AI! </p>
-        </div>
+        <TabList>
+          <Tab>Play game</Tab>
+          <Tab>Global statistics</Tab>
+        </TabList>
 
-        <div className="Signs">
-          <div className="Sign">
-            <Sign name='Rock' logo={rock} dispatch={this.props.dispatch} />
-          </div>
+          <TabPanel>
+            <div className="subHeader">
+              <p> Select a sign and go head to head against the AI! </p>
+            </div>
 
-          <div className="Sign">
-            <Sign name='Paper' logo={paper} dispatch={this.props.dispatch} />
-          </div>
+            <div className="Signs">
+              <div className="Sign">
+                <Sign name='Rock' logo={rock} dispatch={this.props.dispatch} />
+              </div>
 
-          <div className="Sign">
-            <Sign name='Scissors' logo={scissors} dispatch={this.props.dispatch} />
-          </div>
-        </div>
+              <div className="Sign">
+                <Sign name='Paper' logo={paper} dispatch={this.props.dispatch} />
+              </div>
 
-        <div className="Outcome">
-          <Outcome
-            signAI={this.props.signAI}
-            signUser={this.props.signUser}
-            outcome={this.props.outcome}
-            winsUser={this.props.winsUser}
-            winsAI={this.props.winsAI}
-            draws={this.props.draws}
-            totalMatches={this.props.totalMatches}
-          />
-        </div>
+              <div className="Sign">
+                <Sign name='Scissors' logo={scissors} dispatch={this.props.dispatch} />
+              </div>
+            </div>
+
+            <div className="Outcome">
+              <Outcome
+                signAI={this.props.signAI}
+                signUser={this.props.signUser}
+                outcome={this.props.outcome}
+                winsUser={this.props.winsUser}
+                winsAI={this.props.winsAI}
+                draws={this.props.draws}
+                totalMatches={this.props.totalMatches}
+              />
+            </div>
+          </TabPanel>
+
+          <TabPanel>
+            <div className="GlobalStats">
+              <GlobalStats />
+            </div>
+          </TabPanel>
+        </Tabs>
       </div>
     );
   }
@@ -60,8 +79,8 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   if (
-    state.changeSigns.signUser && 
-    state.changeSigns.signAI && 
+    state.changeSigns.signUser &&
+    state.changeSigns.signAI &&
     state.changeScore.totalMatches) {
     return {
       signAI: state.changeSigns.signAI,

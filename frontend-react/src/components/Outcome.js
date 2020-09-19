@@ -38,7 +38,7 @@ class Outcome extends React.Component {
 
                 {this.props.totalMatches > 0 &&
                     <div className='scoreBoard'>
-                        <h2> All matches statistics: </h2>
+                        <h2> Current session statistics: </h2>
 
                         <p>
                             Total played:
