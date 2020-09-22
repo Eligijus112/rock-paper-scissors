@@ -22,4 +22,12 @@ The application should run on the 3000 port on the local machine.
 
 For example,
 
-http://localhost:3000
+http://localhost:3000 
+
+# Running in the clouds 
+
+This application maybe running in the clouds via: 
+
+```
+http://13.58.224.148:3000/
+```
