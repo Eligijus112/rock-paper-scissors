@@ -13,11 +13,10 @@ services:
     # Backend python flask application
     backend:
         build: 
-            context: . 
-            dockerfile: Dockerfile.backend-dev
+            context: ./backend-python
+            dockerfile: Dockerfile.dev
         ports: 
             - 5000:5000
-            - 10001:10001
         volumes: 
             - ./backend-python:/app
         depends_on: 
@@ -28,8 +27,8 @@ services:
     # Frontend react application
     frontend:
         build: 
-            context: . 
-            dockerfile: Dockerfile.frontend-dev
+            context: ./frontend-react
+            dockerfile: Dockerfile.dev
         ports:
             - 3000:3000
         volumes:

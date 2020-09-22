@@ -5,7 +5,7 @@ FROM python:3.7
 WORKDIR /app 
 
 # Copying everything to the working directory
-COPY ./backend-python . 
+COPY . . 
 
 # Installing the dependencies
 RUN pip install -r requirements.txt
